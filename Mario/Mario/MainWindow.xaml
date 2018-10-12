@@ -1,0 +1,14 @@
+﻿<Window x:Class="Mario.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mario"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="800" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
+    <Grid>
+        <Image Name="mario" Source="img/mario.bmp"  Visibility="Visible" MouseDown="mario_MouseDown" Height="124"  Width="124" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom"  />
+        <Image Name="hiden" Source="img/marioj.bmp" Stretch="None"  Visibility="Hidden"/>
+        <Image Name="mosta" Source="img/mosta.bmp" Stretch="None" Visibility="Visible" Height="124" Margin="0,0,10,10" HorizontalAlignment="Right" Width="124" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>

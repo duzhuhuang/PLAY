@@ -1,0 +1,12 @@
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\bin\Debug\Mario.exe
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\bin\Debug\Mario.pdb
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\MainWindow.g.cs
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\App.g.cs
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\Mario_MarkupCompile.cache
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\Mario_MarkupCompile.lref
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\MainWindow.baml
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\Mario.g.resources
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\Mario.Properties.Resources.resources
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\Mario.csproj.GenerateResource.Cache
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\Mario.exe
+C:\Users\huyun\Documents\Visual Studio 2015\Projects\Mario\Mario\obj\Debug\Mario.pdb
