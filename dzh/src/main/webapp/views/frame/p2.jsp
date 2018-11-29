@@ -1,4 +1,4 @@
-<%@ page language="java" import="entiy.person" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="entiy.*" import="java.util.*" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,67 +23,92 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	#1{
 	display:none;
 	}
+	
+	#hidendiv{
+	display:none;
+	position: absolute;
+  	left: 30px;
+  	top: 40px;
+	}	
+	div{
+	background: gray;
+	height: 160px;
+	width: 220px;
+	}
+	input {
+	
+	width: 150px;
+	height: 10px;
+}
+#hidendiv img{
+position: absolute;
+  	left: 210px;
+  	top: -10px;
+  	height:20px;
+  	width: 20px;
+}
+
+	
 	</style>
 <script>
-
-var submit=true;
-function usernamechange(){
-var u1=document.getElementById("f_sex");
-var u2=document.getElementById("sex");
-var b=document.getElementById("btn");
-u1.style.display="block";
-u2.style.display="none";
-b.style.display="block";
+function displ(){
+	
+	var d=document.getElementById("hidendiv");
+	d.style="display:block";
 }
-function phonechange(){
-var u1=document.getElementById("f_phone");
-var u2=document.getElementById("phone");
-var b=document.getElementById("btn");
-u1.style.display="block";
-u2.style.display="none";
-b.style.display="block";
+function hiden(){
+	var d=document.getElementById("hidendiv");
+	d.style="display:none";
 }
-function pwdchange(){
-var u1=document.getElementById("f_pwd");
-var u2=document.getElementById("cpwd");
-var b=document.getElementById("btn");
-u1.style.display="block";
-u2.style.display="none";
-b.style.display="block";
-submit=false;
-var newp=document.getElementById("newp").value;
-newp="";
-}
-
-function check(){
-	var pwd=document.getElementById("password").value;
-	var newp=document.getElementById("newp").value;
-	var p=document.getElementById("01").value;
-if(p==pwd&&newp.length>=6)
-	submit=true;
-	if(!submit)
-	alert("密码不对  ");
-		return submit;
+function sbm(){
+	var f1=document.getElementById("f1").value;
+	var f2=document.getElementById("f2").value;
+	var f3=document.getElementById("f3").value;
+	var f4=document.getElementById("f4").value;
+	var f5=document.getElementById("f5").value;
+	var f6=document.getElementById("f6").value;
+	var f=document.getElementById("f");
+	if(f1==""||f2==""||f3==""||f4==""||f5==""||f6=="")
+		{
+		alert();
+		}
+	else{
+		f.submit();
+	}
 }
 </script>
 </head>
   
   <body onload="onload()">
-  <% person u=(person)session.getAttribute("user"); %>
-    <form  action="updatePersonInfo.do" method="get" onsubmit="return check(this)">
-   
-   <div id="username">用户名：<%=u.getName() %></div>
-     
-   <div id="f_phone"  style="display:none">联系电话：<input  name="phone"  type="text" value="<%=u.getPhone()%>"/></div>
-   <div id="phone">联系电话：<%=u.getPhone() %><button onclick="phonechange()" type="button"> 修改</button></div>
- 	<div id="f_sex" style="display:none">性别：<input  name="sex"  type="text" value="<%=u.getSex()%>"/></div>
- 	<div id="sex">性别：<%=u.getSex() %><button onclick="usernamechange()" type="button"> 修改</button></div>
-  <div id="f_pwd"  style="display:none">原密码：<input  id="password"  type="password" onblur="pcheck()"/><br/>新密码：<input id="newp" name="password" type="password" value="<%=u.getPassword()%>"/></div>
- <div id="cpwd" > <button type="button" onclick="pwdchange()">修改密码</button></div>
+ <% design list=(design)request.getAttribute("list"); 
+ 	if(list==null)
+ 	{
+ 	%>
+ 没有发布的需求
+ <button onclick="displ()">去发布</button>	
+ <%
+ 	}else{
+ %>
+ <table>
+ <tr><th>风格</th><th>描述</th><th>估价</th><th>面积</th></tr>
+
+ <tr><td><%=list.getStyle() %></td><td><%=list.getword() %></td><td><%=list.getCost() %></td><td><%=list.getArea() %></td></tr>
  
-  <div  style="display:none"> <input id="01" value="<%=u.getPassword() %>"/></div>
- 
- <div id="btn" style="display:none"> <button  type="submit" >提交</button></div>
-    </form>
+ </table>
+ <button onclick="displ()">修改</button>	
+ <%}%>
+ <div id="hidendiv"><img src="img/close.png" onclick="hiden()"/>
+ <form action="wannaanddesign.do" id="f">
+        风格<input id="f1" name="style" value=""/><br/>
+        描述<input id="f2" name="word" value=""/><br/>
+        估价<input id="f3" name="cost" type="number" value=""/><br/>
+        面积<input id="f4" name="area" type="number" value=""/><br/>
+        手机<input id="f5" name="phone" value=""/><br/>
+        地址<input id="f6" name="address" value=""/><br/>
+       
+ <button type="button" onclick="sbm()"> 确定</button>
+ </form>
+ </div>
+
   </body>
 </html>

@@ -103,7 +103,29 @@ text-align: center;
 	height:80%;
 	width:100%;
 	}
+	form{
+	position: relative;
+	top:100px;
+	left:100px;
+	
+	background: green;
+	}
     </style>
+    <script>
+    function sbm(){
+	var n=document.getElementById("f_n");
+	var j=document.getElementById("f_j");
+	var p=document.getElementById("f_p");
+	if(n.value!=""&&j.value!=""&&p.value!="")
+		{
+		var form=document.getElementById("f");
+		form.submit();
+		}
+	else{
+		alert();
+	}
+}
+    </script>
   </head>
   
   <body>
@@ -117,12 +139,15 @@ text-align: center;
 	  </div>
    </div>
   <div class="body">
-  <form action="newWanna.do">
- 地址： <input name="address" />
- 电话： <input name="phone" />
- 面积： <input name="area" />
-<input name="did" value="<%=request.getParameter("id")%>" />
-<button type="submit">付定金</button>
+  <form id="f" action="newWanna.do">
+ 地址： <input id="f_n" name="address" />
+ <br/>
+ 电话： <input id="f_p" name="phone" />
+  <br/>
+ 面积： <input id="f_j"name="area" />
+  <br/>
+<input name="did" value="<%=request.getParameter("id")%>" style="display:none" />
+<button type="button" onclick="sbm()">付定金</button>
   </form>
   
   </div>

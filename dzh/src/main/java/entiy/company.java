@@ -15,7 +15,7 @@ public void setPhone(String phone) {
 public String getPhone() {
 	return phone;
 }
-String logoPath;
+String logoPath="d:/null.bmp";
 public void setLogoPath(String logoPath) {
 	this.logoPath = logoPath;
 }

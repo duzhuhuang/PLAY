@@ -86,7 +86,17 @@ font-size: 50px;
 text-align: center;
 	
 	}
-
+#btn{
+	position: relative;
+	left:50%;
+	top:-100px;
+	width: 30%;
+	height: 45px;
+	background-color: #ee7700;
+	border: none;
+	color: white;
+	font-size: 18px;
+}
 .ab{
 	background:#3FC;
 	
@@ -129,6 +139,12 @@ font-weight:bold;
 display:block;
 text-align: center;
 }
+p{
+color: white;
+position:relative;
+left:20%;
+font-size:25px;
+}
     </style>
 <script type="text/javascript">
 var i=0;
@@ -151,18 +167,17 @@ function rig(){
 	var img=document.getElementsByClassName("imge");
 	
 	var title=document.getElementsByClassName("word");
-	if(i<4){
+	if(i<imge.length){
 		var next=img[i+1];
 		
-		if(next.src!="http://localhost:8080/dzh/null")
-		{
-			alert(next.src);
+		
+			
 			img[i].style.display="none";
 			title[i].style.display="none";
 			i++;
 			img[i].style.display="inline";
 			title[i].style.display="inline";
-		}	
+			
 	}
 	
 }
@@ -187,30 +202,28 @@ function rig(){
       
     </div>
     <div class="info">
-    <p> <%=d.getStyle() %></p>
-    <p><%=d.getword() %></p>
-    <p><%=d.getArea() %></p>
-    <p><%=d.getCost() %></p>
+    <p> 风格：<%=d.getStyle() %></p>
+    <p>描述：<%=d.getword() %></p>
+    <p>面积：<%=d.getArea() %></p>
+    <p>估价：<%=d.getCost() %></p>
     </div>
       
-    </div>
+    </div><a href="views/form.jsp?id=<%=d.getId()%>"><button id="btn">使用该方案</button></a>
    	<div class="word"><%=d.getPictures().get(0).getWhat()%></div>
-   	<div class="word" style="display:none"><%=d.getPictures().get(1).getWhat() %></div>
-   	<div class="word" style="display:none"><%=d.getPictures().get(2).getWhat() %></div>
-   	<div class="word" style="display:none"><%=d.getPictures().get(3).getWhat() %></div>
-   	<div class="word" style="display:none"><%=d.getPictures().get(4).getWhat() %></div>
+   	<% for(int i=1;i<d.getPictures().size();i++){ %>
+   	<div class="word" style="display:none"><%=d.getPictures().get(i).getWhat() %></div>
+   <%} %>
 	<div class="im">
     <img id="left"  src="img/left.jpg"  class="move" onclick="lef()"/>
      <img   class="imge" src="<%=d.getPictures().get(0).getPath()%>"/>
-     <img   class="imge" src="<%=d.getPictures().get(1).getPath()%>" style="display:none"/>
-     <img   class="imge" src="<%=d.getPictures().get(2).getPath()%>" style="display:none"/>
-     <img   class="imge" src="<%=d.getPictures().get(3).getPath()%>" style="display:none"/>
-     <img   class="imge" src="<%=d.getPictures().get(4).getPath()%>" style="display:none"/>
+     <% for(int i=1;i<d.getPictures().size();i++){ %>
+     <img   class="imge" src="<%=d.getPictures().get(i).getPath()%>" style="display:none"/>
+      <%} %>
     <img id="right" class="move" src="img/right.jpg" onclick="rig()"/>
 	</div>
-	<a href="views/form.jsp?id=<%=d.getId() %>"><button>定制该方案</button></a>
 	
   </div>
+  
   <div class="ab">
   </div>
    

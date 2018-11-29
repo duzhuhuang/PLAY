@@ -1,6 +1,9 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.io.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,10 +12,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import dao.slDao;
+
+import entiy.Page;
 import entiy.company;
 import entiy.design;
 import entiy.picture;
+import entiy.wanna;
 import function.*;
 
 
@@ -26,9 +31,16 @@ public class funTest {
 	function.companyFunction f3;
 	
 	@Test
-	public void t123() {
-		f3.addcompany(new company());
-		
+	public void t123() throws IOException {
+	FileReader reader=new FileReader(new File("d:/logs/log4jinfo.log"));
+	BufferedReader bfr=new BufferedReader(reader);
+	System.out.println(bfr.ready());
+	bfr.readLine();
+	String out=bfr.readLine();
+	
+	System.out.println(out);
+	System.out.println(bfr.ready());
+	bfr.close();
 	}
 
 	public void test() {

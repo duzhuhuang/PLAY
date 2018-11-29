@@ -1,5 +1,6 @@
-<%@ page language="java" import="entiy.person" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="entiy.message" import="java.util.ArrayList" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,70 +21,99 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<style type="text/css">
-	#1{
-	display:none;
+	table, td, th
+  {
+  border:1px solid green;
+  
+  }
+  table{
+  width:80%;
+  }
+  	
+	 .short{
+	width:100px;
 	}
+	.longtd{
+	width:600px;
+	}
+	td {
+  	width :200px;}
+#hidendiv{
+	display:none;
+	position: absolute;
+  	left: 30px;
+  	top: 40px;
+	}	
+	#hidendiv img{
+position: absolute;
+  	left: 210px;
+  	top: -10px;
+  	height:20px;
+  	width: 20px;
+}
+	div{
+	background: gray;
+	height: 160px;
+	width: 220px;
+	}
+	input {
+	
+	width: 220px;
+	height: 160px;
+}
 	</style>
 <script>
+function displ(obj){
+	var s=document.getElementById("sourc");
+	var d=document.getElementById("hidendiv");
+	d.style="display:block";
+	s.value=obj;
+}
+function hiden(){
+	var d=document.getElementById("hidendiv");
+	d.style="display:none";
+}
+var xmlhttp;
+function ajax(){
+	var data=document.getElementById("sourc").value;
+	var inf=document.getElementById("inf").value;
+	var url="/dzh/respon.do?type=2b&sendto="+data+"&information="+inf;
+	
+	 xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function(){
+		
+		if (xmlhttp.readyState==4&&xmlhttp.status==200)
+		  {
+			alert("ok");
+			hiden();
+		  }
+	};
+	
+	xmlhttp.open("get",url , true);
+	xmlhttp.send();
+	
+	
+}
 
-var submit=true;
-function usernamechange(){
-var u1=document.getElementById("f_sex");
-var u2=document.getElementById("sex");
-var b=document.getElementById("btn");
-u1.style.display="block";
-u2.style.display="none";
-b.style.display="block";
-}
-function phonechange(){
-var u1=document.getElementById("f_phone");
-var u2=document.getElementById("phone");
-var b=document.getElementById("btn");
-u1.style.display="block";
-u2.style.display="none";
-b.style.display="block";
-}
-function pwdchange(){
-var u1=document.getElementById("f_pwd");
-var u2=document.getElementById("cpwd");
-var b=document.getElementById("btn");
-u1.style.display="block";
-u2.style.display="none";
-b.style.display="block";
-submit=false;
-var newp=document.getElementById("newp").value;
-newp="";
-}
-
-function check(){
-	var pwd=document.getElementById("password").value;
-	var newp=document.getElementById("newp").value;
-	var p=document.getElementById("01").value;
-if(p==pwd&&newp.length>=6)
-	submit=true;
-	if(!submit)
-	alert("密码不对  ");
-		return submit;
-}
 </script>
 </head>
-  
+  <% ArrayList<message> msl=(ArrayList<message>)request.getAttribute("list"); %>
   <body onload="onload()">
-  <% person u=(person)session.getAttribute("user"); %>
-    <form  action="updatePersonInfo.do" method="get" onsubmit="return check(this)">
-   
-   <div id="username">用户名：<%=u.getName() %></div>
+  <table  >
+  <tr><th>消息</th><th>来源</th></tr>
+ <%for(message m:msl) {%>
+<tr> 
+<td class="longtd"> <%=m.getInformation() %></td><td class="short"><%=m.getName() %></td><td class="short"><button onclick="displ(<%=m.getSource() %>)">回复</button></td>
+ <td><%=m.getTime() %></td></tr>
+ <% }%>
+ </table>
+  <div id="hidendiv"><img src="img/close.png" onclick="hiden()"/>
+ <form id="form" action="respon.do">
+     <input id="sourc" name="sendto" style="display: none"/>
      
-   <div id="f_phone"  style="display:none">联系电话：<input  name="phone"  type="text" value="<%=u.getPhone()%>"/></div>
-   <div id="phone">联系电话：<%=u.getPhone() %><button onclick="phonechange()" type="button"> 修改</button></div>
- 	<div id="f_sex" style="display:none">性别：<input  name="sex"  type="text" value="<%=u.getSex()%>"/></div>
- 	<div id="sex">性别：<%=u.getSex() %><button onclick="usernamechange()" type="button"> 修改</button></div>
-  <div id="f_pwd"  style="display:none">原密码：<input  id="password"  type="password" onblur="pcheck()"/><br/>新密码：<input id="newp" name="password" type="password" value="<%=u.getPassword()%>"/></div>
- <div id="cpwd" > <button type="button" onclick="pwdchange()">修改密码</button></div>
- 
-  <div  style="display:none"> <input id="01" value="<%=u.getPassword() %>"/></div>
- 
- <div id="btn" style="display:none"> <button  type="submit" >提交</button></div>
-    </form>
+     <input id="inf" name="information" type="text" />
+ <button type="button" onclick="ajax()"> 确定</button>
+ </form>
+ </div>
   </body>
 </html>

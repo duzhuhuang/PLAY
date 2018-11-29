@@ -1,6 +1,8 @@
 package test;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -35,11 +37,15 @@ public class DAOTEST {
 	@Autowired
 	SQLDao dao;
 	@Autowired
-	dao.pdao pd;
-	@Autowired
-	dao.ddao dedao;
+	ddao d;
 
-	
+	@Test
+	public void teset() {
+		//System.out.println(d.getdesigns2());
+		
+		System.out.println(dao.toushuList().get(0));
+		
+	}
 	public void test() {
 	List<company> list=  dao.companyList(3);
 	for( company p: list){
@@ -48,21 +54,8 @@ public class DAOTEST {
 		//System.out.println(dao.companyList().get(1).getId());
 		
 	}
-	@Test
-	public void t1() {
-		message  m=new message();
-		m.setSource(10);
-		m.setSendto(20);
-		m.setInformation("ÐÂ¶©µ¥");
-		dao.NewMessage(m);
-		
-		
-	}
-	public void st() {
-		design d=dedao.newDesign();
-		System.out.println(d.getId()+d.getName());
-		
-	}
+	
+	
 	
 	
 	

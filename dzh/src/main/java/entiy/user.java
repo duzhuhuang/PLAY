@@ -22,4 +22,9 @@ public class user {
 		public String getPassword() {
 			return password;
 		}
+		@Override
+		public String toString() {
+		// TODO Auto-generated method stub
+		return String.valueOf(id);
+		}
 }

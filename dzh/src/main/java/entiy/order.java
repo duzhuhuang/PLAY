@@ -1,12 +1,36 @@
 package entiy;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 public class order {
 	int id;
 	int pid;
 	int cid;
-	Date date;
+	String cname;
+	String pname;
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public String getPname() {
+		return pname;
+	}
+	int did;
+	public void setDid(int did) {
+		this.did = did;
+	}
+	public int getDid() {
+		return did;
+	}
+	Timestamp date=new Timestamp(0);
 	double cost;
 	int action;
 	public int getId() {
@@ -27,10 +51,10 @@ public class order {
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
-	public Date getDate() {
-		return date;
+	public String getDate() {
+		return timeStamp2Date(date);
 	}
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 	public double getCost() {
@@ -57,5 +81,16 @@ public class order {
 	public void setAction(int action) {
 		this.action = action;
 	}
+	 /** 
+	  		* 时间戳转换成日期格式字符串 
+	        * @param seconds 精确到秒的字符串 
+	        * @param formatStr 
+	        * @return 
+	        */  
+	     public  String timeStamp2Date(Timestamp d) {  
+	    	 
+	    	 SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+	    	 return format.format(d);
+	     }  
 	
 }

@@ -1,6 +1,5 @@
 package entiy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class design {
@@ -11,7 +10,7 @@ String style;
 String word;
 double area;
 double cost;
-ArrayList<picture> pictures;
+List<picture> pictures;
 public int getId() {
 	return id;
 }
@@ -54,11 +53,11 @@ public double getCost() {
 public void setCost(double cost) {
 	this.cost = cost;
 }
-public ArrayList<picture> getPictures() {
+public List<picture> getPictures() {
 	return pictures;
 }
 public void setPictures(List<picture> list) {
-	this.pictures = (ArrayList<picture>) list;
+	this.pictures = (List<picture>) list;
 }
 
 }

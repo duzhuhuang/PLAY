@@ -1,10 +1,13 @@
 package controller;
 
+import org.apache.logging.log4j.*;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -24,6 +27,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import entiy.company;
 import entiy.design;
+import entiy.message;
 import entiy.user;
 
 import function.nologinFunction;
@@ -82,6 +86,16 @@ public class nologinController {
 		return null;
     	
     }
+    @RequestMapping(value="respon")
+    public void respon(HttpSession session,message m,HttpServletResponse response) throws IOException{
+    	PrintWriter out= response.getWriter();
+    	user u=(user)session.getAttribute("user");
+    	m.setSource(u.getId());
+    	m.setRead(0);
+    	m.setName(u.getName());
+    	lf.addmessage(m);
+    	out.println("");
+    }
     @RequestMapping(value="companyList")
     public String companyList(ModelMap m) {
     	//HttpSession session =request.getSession();
@@ -108,6 +122,12 @@ public class nologinController {
     		m.addAttribute("list",list.subList(0,3));
     		return "companylist";
     	
+    }
+    @RequestMapping("log")
+    public void log() {
+    	
+    	Logger log=LogManager.getLogger();
+    	log.error("test");
     }
   
 }

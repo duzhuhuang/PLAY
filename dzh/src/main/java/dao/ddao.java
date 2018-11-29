@@ -10,7 +10,10 @@ import entiy.design;
 import entiy.picture;
 
 public interface ddao {
-
+public List<design> getdesigns(design d);
+public List<design> getdesigns2();
+public List<design> getdesigns3();
+public picture s1(int id);
 @Insert("insert into design(name,style,cid,area,cost,word) values (#{name},#{style},#{cid},#{area},#{cost},#{word})")
 public void saveDesign(design d);
 @Select("select * from design order by id desc limit 1")
@@ -52,11 +55,4 @@ public List<design> getDesignList(int cid,int page,int offset);
 public design getDesign(int id);
 
 
-@Update("update from design set name=#{name},style=#{style},cost=#{cost},area=#{area},cid=#{cid},word=#{word} where id=#{id}")
-public void modifyDesign(design d);
-
-@Select("select picture.id,picture.path,picture.what from picture where picture.did=#{0}")
-public List<picture> findPicture(int did);
-@Select("select did from designrank order by rank desc limit 3")
-public List<Integer> designTop();
 }

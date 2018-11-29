@@ -104,6 +104,12 @@ text-align: center;
 	width:100%;
 	}
     </style>
+    <script>
+    window.onload=function(){
+    	alert("提交成功");
+    	window.location="/dzh/views/person.jsp";
+    }
+    </script>
   </head>
   
   <body>

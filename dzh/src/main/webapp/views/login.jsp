@@ -124,7 +124,7 @@ var username=document.getElementById("user_name").value;
 var pwd=document.getElementById("password").value;
 
 xmlhttp=createXMLRequest();
-var url="/ZHPT1/login?user_name="+username+"&"+"password="+pwd;
+var url="/login.do?user_name="+username+"&"+"password="+pwd;
 xmlhttp.onreadystatechange=stateChange;
 xmlhttp.open("get", url, true);
 xmlhttp.send();
@@ -168,7 +168,7 @@ form2.style.display="none";
 		
 	</div>
 	<div id="form1" class="form">
-	<form action="personLogin.do" method="get">
+	<form action="personLogin.do" method="post">
 	<div class="lgD">
    <img class="img1" src="./img/logName.png" /><input   id="user_name"  name="name" type="text"/>&nbsp;用户名<br/>
    </div>
@@ -183,7 +183,7 @@ form2.style.display="none";
    </form>
    </div>
    <div id="form2" class="form" style="display:none">
-	<form action="compLogin.do" method="get">
+	<form action="compLogin.do" method="post">
 	<div class="lgD">
    <img class="img1" src="./img/logName.png" /><input   id="user_name"  name="name" type="text"/>&nbsp;企业ID<br/>
    </div>

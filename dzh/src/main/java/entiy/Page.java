@@ -6,6 +6,10 @@ int total;
 public int getPage() {
 	return page;
 }
+/**
+ * 
+ * @return ×ÜÒ³Êı
+ */
 public int getTotal() {
 	return total;
 }

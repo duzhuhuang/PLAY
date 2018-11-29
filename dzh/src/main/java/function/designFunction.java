@@ -10,11 +10,15 @@ import dao.SQLDao;
 import dao.ddao;
 import dao.userDao;
 import entiy.design;
+import entiy.order;
 import entiy.picture;
+import entiy.wanna;
 @Service("designFunction")
 public class designFunction {
 @Autowired
 SQLDao dDao;
+@Autowired
+ddao ddao2;
 @Transactional
 public int addDesign(design d) {
 	dDao.saveDesign(d);
@@ -77,6 +81,23 @@ public int countDesign() {
 public void updateDesign(design d) {
 	dDao.modifyDesign(d);
 }
+@Transactional
+public void acDesign(order o,int id) {
+//	if(dDao.acdesign(id)!=0)
+//	{
+//	dDao.acDesign(id, cid);
+	dDao.acwanna(id);
+	dDao.addOrder(o);
+//	order o=new order();
+//	design d=dDao.finddesign(id);
+//	o.setCid(cid);
+//	o.setPid((dDao.findwanna(id)).getPid());
+//	o.setCost(d.getCost());
+//	o.setAction(1);
+//	dDao.addOrder(o);
+//	}
+	
+}
 /**
  * 
  * @param id	designÖ÷¼ü
@@ -86,9 +107,26 @@ public design GetDesign(int id) {
 	return dDao.getDesign(id);
 	
 }
-public List<Integer> topdesign(){
-	return dDao.designTop();
+public List<design> topdesign(int id){
+	design d=dDao.pfindwanna(id);
+	List<design> r=ddao2.getdesigns(d);
+	if(r.size()<3) {
+		List<design> r2 =ddao2.getdesigns2();
+		r.addAll(r2);
+	}
+	return r;
+}
+public List<design> designInspect(){
+	return ddao2.getdesigns3();
 }
 
-
+public void delete(int id) {
+	dDao.delete(id);
+}
+public void allow(int id) {
+	dDao.allow(id);
+}
+public void del(int id) {
+	dDao.deletedesign(id);
+}
 }

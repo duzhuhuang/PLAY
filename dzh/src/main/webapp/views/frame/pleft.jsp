@@ -75,8 +75,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
-  </head>
-  
+<script type="text/javascript">
+var ajax;
+window.onload=function(){
+		ajax=new XMLHttpRequest();
+		ajax.onreadystatechange=dosomething;
+		ajax.open("get","/dzh/checkMessage.do",false);
+		ajax.send();
+	}
+	function dosomething(){
+		
+		var data=ajax.responseText;
+		
+		var msg=document.getElementById("msg");
+		if(data!="0")
+		{msg.setAttribute('style','background-color: red');
+		}
+		else
+			msg.setAttribute('style','background-color:#00BBFA');
+			
+	}
+	function clk(){
+		var msg=document.getElementById("msg");
+		msg.setAttribute('style','background-color:#00BBFA');
+	}
+	</script>
+</head>
   <body id="bg">
 	<!-- 左边节点 -->
 	<div class="container">
@@ -93,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</dl>
 			
 			<dl class="">
-				<dt><a href="views/frame/p2.jsp" target="main">
+				<dt><a href="p2.do" target="main">
 					 需求管理
 </a>
 				</dt>
@@ -101,19 +125,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</dl>
 			
 			<dl class="">
-				<dt><a href="views/frame/p3.jsp" target="main">
+				<dt><a href="p3.do" target="main">
 					 订单管理
 </a>
 				</dt>
 				
 			</dl>
+		<a href="read.do" onclick="clk()" target="main">	<div>
 			<dl class="">
-				<dt><a href="views/frame/p4.jsp" target="main">
+				<dt id="msg">
 					消息
-</a>
+
 				</dt>
 			
-			</dl>
+			</dl></div></a>
 		</div>
 
 	</div>

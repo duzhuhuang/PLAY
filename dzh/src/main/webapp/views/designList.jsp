@@ -39,7 +39,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 .head .headL img.headLogo {
 	padding-top: 28px;
 }
-
+#tb{
+position: relative;
+top:20%;
+left:20%;
+}
+table, td, th
+{
+  border:1px solid green;
+  
+ }
+ 
+  table{
+  width:750px;
+  }
+	td{
+	width:150px;
+	}
+	 .ltd{
+	width:300px;
+	}
 .head .headR {
 	width: 400px;
 	height: 100%;
@@ -52,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 .body{
 	width:100%;
-	background:#00F;
+	background:#00f;
 	
 	height:900px;
 	}
@@ -60,9 +79,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	position: relative;
 	left:5%;
+	top:15px;
 	width:90%;
 	height:49%;
-	background:red;
+	background:#AAAAAA;
 	}
 .design .img{	
 width: 32%;
@@ -78,11 +98,11 @@ text-align: center;
 	}
 .body .comp{
 	position: relative;
-	
+	text-align:center;
 	left:5%;
 	top:1%;
 	width:90%;
-	height:49%;
+	height:9%;
 	background:#CC6;
 	}
 .ab{
@@ -103,6 +123,7 @@ text-align: center;
 	height:80%;
 	width:100%;
 	}
+	
     </style>
   </head>
   
@@ -122,13 +143,17 @@ text-align: center;
    </div>
   <div class="body">
     <div class="design">
+    <div id="tb">
+    <table><tr><td>name</td><td>style</td><td>描述</td><td></td></tr>
      <%for(design d: list) 
      {
      
      %>
-  <img src="<%=d.getPictures().get(0)%>" />
-     <p><%=d.getName() %></p>
+<tr><td><%=d.getName() %></td><td><%=d.getStyle() %></td><td class="ltd"><%=d.getword() %></td><td><a href="designInfo.do?id=<%=d.getId() %>&userType=person">查看</a></td></tr>
+    
      <% }%>
+     </table>
+     </div>
     </div>
     <div class="comp">
     	<a href="designList.do?page=<%=back %>"><button>上一页</button></a><%=p.getPage() %><a href="designList.do?page=<%=next %>"><button>下一页</button></a>

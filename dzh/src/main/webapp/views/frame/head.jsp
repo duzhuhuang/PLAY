@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*"  pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" import="entiy.company"  pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -77,15 +77,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   
 <body>
-	  
+	   <% company p=(company)session.getAttribute("user"); %>
 	<div class="head">
 		<div class="headL">
 			<img class="headLogo" src="img/logo.png"/>
 		</div>
 		<div class="headR">
-			<span style="color:#FFF">欢迎：
+			<span style="color:#FFF"><%=p.getName() %>
 			
-			</span> <a href="login.jsp" target="_top">【退出】</a>
+			</span> <a href="logoff.do" target="_top">【退出】</a>
 		</div>
 	</div>
 </body>

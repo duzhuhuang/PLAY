@@ -80,12 +80,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  <% person p=(person)session.getAttribute("user"); %>
 	<div class="head">
 		<div class="headL">
-			<img class="headLogo" src="img/logo.png"/>
+			<a href="index.do" target="_top"><img class="headLogo" src="img/logo.png"/></a>
 		</div>
 		<div class="headR">
 			<span style="color:#FFF">欢迎：<%=p.getName()%>
 			
-			</span> <a href="login.jsp" target="_top">【退出】</a>
+			</span> <a href="logoff.do" target="_top">【退出】</a>
 		</div>
 	</div>
 </body>

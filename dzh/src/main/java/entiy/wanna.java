@@ -1,12 +1,25 @@
 package entiy;
 
 public class wanna {
+	int id;public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 int did;
 String address;
 double area;
 int pid;
 int activy=1;
 int read;
+String phone;
+public void setPhone(String phone) {
+	this.phone = phone;
+}
+public String getPhone() {
+	return phone;
+}
 public int getRead() {
 	return read;
 }
@@ -17,7 +30,7 @@ public int getActivy() {
 	return activy;
 }
 /**
- * 表示该需求的状态 1：已创建  2：已受理  3：已完成
+ * 表示该需求的状态 1：已创建  2：已受理  3：已完成  0:委托的wanna
  * @param activy 
  */
 public void setActivy(int activy) {

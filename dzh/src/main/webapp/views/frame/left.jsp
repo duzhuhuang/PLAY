@@ -66,6 +66,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 
     </style>
+    <script type="text/javascript">
+var ajax;
+window.onload=function(){
+		ajax=new XMLHttpRequest();
+		ajax.onreadystatechange=dosomething;
+		ajax.open("get","/dzh/comp/checkMessage.do",false);
+		ajax.send();
+	}
+	function dosomething(){
+		
+		var data=ajax.responseText;
+		
+		var msg=document.getElementById("msg");
+		if(data!="0")
+		{msg.setAttribute('style','background-color: red');
+		}
+		else
+			msg.setAttribute('style','background-color:#00BBFA');
+			
+	}
+	function clk(){
+		var msg=document.getElementById("msg");
+		msg.setAttribute('style','background-color:#00BBFA');
+	}
+	</script>
+</head>
     <title>My JSP 'pesonal.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
@@ -84,39 +110,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="container">
 
 		<div class="leftsidebar_box">
-				<dl class="">
-				<dt ><a href="personal.jsp" target="main">
-					 业务
-</a>
+			<a href="views/frame/c1.jsp" target="main">	<dl class="">
+				<dt >
+					企业信息
+
 				</dt>
 				
-			</dl>
-			
+			</dl></a>
+			<a href="c2.do" target="main">
 			<dl class="">
-				<dt ><a href="T.jsp" target="main">
+				<dt >
 					 业务
-</a>
+
 				</dt>
 				
-			</dl>
-			
+			</dl></a>
+			<a href="designList2C.do?page=1" target="main">
 			<dl class="">
-				<dt><a href="/ZHPT1/designbtn" target="main">
+				<dt>
 					 设计方案
-</a>
+
 				</dt>
 			
-			</dl>
+			</dl></a>
 			
 			<dl class="">
-				<dt><a href="O.JSP" target="main">
+				<dt><a href="c4.do" target="main">
 					 订单管理
 </a>
 				</dt>
 				
 			</dl>
 			<dl class="">
-				<dt><a href="M.JSP" target="main">
+				<dt id="msg"><a href="comp/read.do" onclick="clk()" target="main">
 					消息
 </a>
 				</dt>

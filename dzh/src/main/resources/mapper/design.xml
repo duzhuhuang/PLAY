@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ddao">
+ <resultMap type="entiy.design" id="designrs">
+<id column="id" jdbcType="INTEGER" property="id"/>
+<result column="style" jdbcType="VARCHAR" property="style"/>
+<result column="word" jdbcType="VARCHAR" property="word"/>
+<result column="name" jdbcType="VARCHAR" property="name"/>
+<result column="area" jdbcType="VARCHAR" property="area"/>
+
+<result column="cost" jdbcType="VARCHAR" property="cost"/>
+<result column="cid" jdbcType="INTEGER" property="cid"/>
+<collection property="pictures" ofType="entiy.picture" select="getpics" column="id">
+			<!--  <id column="id" property="id"/>
+			<result column="what" property="what"/>
+			<result column="did" property="did"/>
+			<result column="path" property="path"/>-->
+		</collection>
+</resultMap> 
+
+	
+	
+	<!-- 查询所有的老师级各自的所有学生 -->
+	<select id="getpics" parameterType="int" resultType="entiy.picture">
+		SELECT
+			*
+		FROM
+			picture
+		where did=#{0}
+	</select>
+	
+	<select id="getdesigns" parameterType="entiy.design" resultMap="designrs">
+		SELECT 
+			* 
+		FROM 
+			design
+		where style like "%"#{style}"%" and allow = 1 and
+		area <![CDATA[< ]]> #{area} + 10 and 
+		area <![CDATA[>= ]]> #{area} - 10 and 
+		cost <![CDATA[>= ]]> #{cost} - 10 and 
+		cost <![CDATA[< ]]> #{cost} + 10 
+		limit 3
+	</select>
+	<select id="getdesigns2"  resultMap="designrs">
+		SELECT 
+			* 
+		FROM 
+			design	
+		Where allow=1	
+		limit 3
+	</select>
+	<select id="getdesigns3"  resultMap="designrs">
+		SELECT 
+			* 
+		FROM 
+			design	
+		where allow =-1	
+		limit 10
+	</select>
+
+</mapper>

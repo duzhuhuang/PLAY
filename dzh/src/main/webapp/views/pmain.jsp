@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" import="entiy.person"  pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" import="entiy.*"  pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -94,9 +94,14 @@ text-align: center;
 	height:50px;
 	}
 .more{
-	position: absolute;
-	right: 15px;
-	bottom: 0px;
+	font-size:20px;
+	position: relative;
+	text-align:center;
+	left:5%;
+	top:1%;
+	width:90%;
+	height:9%;
+	background:#CC6;
 	}
 	.design p{
 		
@@ -121,31 +126,31 @@ text-align: center;
    </div>
   <div class="body">
     <div class="design">
-      <p class="tou">找设计</p>
-      <div class="img" id="img1">
-      <img src="<%=request.getAttribute("img1") %>"/>
-      <p id="w1"><%=request.getAttribute("w1") %></p>
+      <p class="tou">为您推荐</p>
+      <% ArrayList<design> list1=(ArrayList<design>)request.getAttribute("list1"); %>
+      <div class="img" id="img1"><a href="designInfo.do?id=<%=list1.get(0).getId()%>&userType=person">
+      <img src="<%=list1.get(0).getPictures().get(0).getPath() %>"/></a>
+      <p id="w1"><%=list1.get(0).getName() %></p>
       </div>
-      <div class="img" id="img2">
-      <img src="<%=request.getAttribute("img2") %>"/>
-      <p id="w2"><%=request.getAttribute("w2") %></p>
+      <div class="img" id="img2"><a href="designInfo.do?id=<%=list1.get(1).getId() %>&userType=person">
+      <img src="<%=list1.get(1).getPictures().get(0).getPath() %>"/></a>
+      <p id="w2"><%=list1.get(1).getName() %></p>
       </div>
-       <div class="img" id="img3"><a href="designInfo.do?id=<%=request.getAttribute("did3") %>">
-      <img src="<%=request.getAttribute("img3") %>"/></a>
-      <p id="w3">欧式风格</p>
+       <div class="img" id="img3"><a href="designInfo.do?id=<%=list1.get(2).getId() %>&userType=person">
+      <img src="<%=list1.get(2).getPictures().get(0).getPath() %>"/></a>
+      <p id="w3"><%=list1.get(2).getName() %></p>
       </div>
-      <div class="more">
-      <a href="designList.do?page=1">更多>></a> 
-      </div>
+      
     </div>
-    <div class="comp">
-    	<p class="tou">	找装修</p>
+    <a href="designList.do?page=1"><div class="more">更多 </div></a>
+   <!--   <div class="comp">
+    	<p class="tou">	装修实例</p>
     	<div class="img">
     	</div>
         <div class="more">
       <a>更多>></a> 
       </div>
-    </div>
+    </div>-->
   </div>
   <div class="ab">
   </div>

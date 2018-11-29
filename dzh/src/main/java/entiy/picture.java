@@ -5,6 +5,13 @@ int id;
 String what;
 String path;
 int did;
+design d;
+public void setD(design d) {
+	this.d = d;
+}
+public design getD() {
+	return d;
+}
 public void setDid(int did) {
 	this.did = did;
 }
